@@ -1,0 +1,17 @@
+{
+   "name": "Chrome Extension demo",
+   "description": "Testing Chrome Extensions",
+   "version": "1.0.0",
+   "manifest_version": 3,
+   "action": {},
+   "permissions": [
+      "activeTab",
+      "scripting"
+   ],
+   "host_permissions": [
+        "<all_urls>"
+    ],
+   "background": {
+      "service_worker": "background.js"
+   }
+}
