@@ -15,3 +15,22 @@ chrome.action.onClicked.addListener((tab) => {
     })
     .then();
 });
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'context-menu-test',
+    title: 'Hey, I am a new context menu option',
+    type: 'normal',
+    contexts: ['selection'],
+  });
+});
+
+// Listening for a context menu click event
+chrome.contextMenus.onClicked.addListener(function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const msg = 'A new message has been sent';
+    if (tabs[0]?.id) {
+      chrome.tabs.sendMessage(tabs[0].id, { message: msg });
+    }
+  });
+});
